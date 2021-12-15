@@ -30,8 +30,7 @@ jobs:
         - docker run --rm lambda_image bash -c 'cd src && python3 -m pytest -v ../tests/unit'
         - docker run --rm lambda_image bash -c 'cd src && python3 -m pytest -v ../tests/perf --profile'
         # lint Cloudformation
-        - docker build -t cfn-python-lint:latest .
-        - docker run --rm -v `pwd`:/data cfn-python-lint:latest /data/dynatrace-aws-log-forwarder-template.yaml
+        - docker run --rm -v `pwd`/dynatrace-aws-log-forwarder-template.yaml:/data/dynatrace-aws-log-forwarder-template.yaml lambda_image bash -c 'cfn-lint /data/dynatrace-aws-log-forwarder-template.yaml'
     - stage: build
       name: Build AWS Lambda package
       language: shell
