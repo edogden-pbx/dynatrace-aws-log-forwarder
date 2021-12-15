@@ -29,9 +29,6 @@ jobs:
         - docker run --rm lambda_image bash -c 'python3 -m pylint --rcfile=pipeline/pylint.cfg $(find src/ -name "*.py")'
         - docker run --rm lambda_image bash -c 'cd src && python3 -m pytest -v ../tests/unit'
         - docker run --rm lambda_image bash -c 'cd src && python3 -m pytest -v ../tests/perf --profile'
-        # Lint Cloudformation
-        - docker build -t cfn-python-lint:latest .
-        - docker run --rm -v `pwd`:/data cfn-python-lint:latest /data/dynatrace-aws-log-forwarder-template.yaml
     - stage: build
       name: Build AWS Lambda package
       language: shell
