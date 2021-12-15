@@ -5,3 +5,5 @@ USER root
 COPY . /var/task
 
 RUN pip3 install -r /var/task/src/requirements.txt -r /var/task/src/requirements-dev.txt
+RUN pip3 install cfn-lint
+RUN pip3 install pydot
